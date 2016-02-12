@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Send Multiple Events</title>
+	<script src="jquery.js"></script>
+	<script src = "keen.js"></script>
+</head>
+<body>
+
+	<button>Send Events</button>
+	<script>
+	
+	(function(){
+		
+		$('button').on('click', function(){
+
+			client.addEvent("MultipleEvents", multipleEvents, function(err, res){
+ 				if (err) {
+    			console.log(err);
+  			}
+  			else {
+    			console.log(res);
+  			}
+			});
+
+		});
+
+			var client = new Keen({
+ 				 projectId: "56b32ee4672e6c30f129af8f",
+ 				 writeKey: "fc894730ed8ce5f3a578767ba0d5cf1d2b704f54ea23ab1b6e3561403a2066a9abb9e1705b09b296ed873f097689ea5b200358c846a093618f4d3b80c6f5c55a59fd3ceaea3fd45a697a5bced77325f282bc6640511f1d8e90f95c48b6b68413"
+			});
+
+			var multipleEvents = {
+  			"purchases": [
+  		  	{ item: "golden gadget", price: 2550, transaction_id: "f029342" },
+    			{ item: "a different gadget", price: 1775, transaction_id: "f029342" }
+ 		 	  ],
+  			"transactions": [{
+   	   		id: "f029342",
+      		items: 2,
+      		total: 4325
+    		}]
+			};
+	
+	
+	})();
+	
+	</script>
+</body>
+</html>
