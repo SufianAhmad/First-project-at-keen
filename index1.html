@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Send Single Event</title>
+	<script src="jquery.js"></script>
+	<script src = "keen.js"></script>
+</head>
+<body>
+
+	<button>Send Event</button>
+	<script>
+	
+	(function(){
+		
+		$('button').on('click', function(){
+
+			client.addEvent("SignUp", signUP, function(err, res){
+ 				if (err) {
+    			console.log(err);
+  			}
+  			else {
+    			console.log(res);
+  			}
+			});
+
+		});
+
+		var client = new Keen({
+ 		 projectId: "56b32ee4672e6c30f129af8f",
+ 		 writeKey: "fc894730ed8ce5f3a578767ba0d5cf1d2b704f54ea23ab1b6e3561403a2066a9abb9e1705b09b296ed873f097689ea5b200358c846a093618f4d3b80c6f5c55a59fd3ceaea3fd45a697a5bced77325f282bc6640511f1d8e90f95c48b6b68413"
+		});
+
+		var signUP = {
+  		username: "Sufian",  
+  		email: "sufian.ahmad@yahoo.com", // track dollars as cents
+  		IP:"192.168.1.122",
+  		keen: {
+   		 timestamp: new Date().toISOString()
+  		}
+		};
+	
+	})();
+	
+	</script>
+</body>
+</html>
