@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Count Events</title>
+	<script src="jquery.js"></script>
+	<script src = "keen.js"></script>
+</head>
+<body>
+
+	<button>Count</button>
+	<script>
+	
+	(function(){
+		
+		$('button').on('click', function(){
+
+				var client = new Keen({
+				  projectId: "56b32ee4672e6c30f129af8f",
+				  readKey: "a71fa988e5a6f08827b40d5a1320b234cc1632a35f1e9ef1d9226ccfe8e2251d1f25bc69b7a8a6ddc40384aef946e926d85006375be5f307eed343a7f719f6250afdee171584ee349136070af395c18ea862a22676fab829f61e74d477c7714d"
+				});
+
+				var count = new Keen.Query("count", {
+				  eventCollection: "WeatherStatus",
+				  timeframe: "this_2_days"
+				});
+
+				client.run(count, function(err, response){
+				  // if (err) handle the error
+				  alert(response.result);
+				  console.log(response.result); // 100
+				});
+		});
+	})();
+	
+	</script>
+</body>
+</html>
